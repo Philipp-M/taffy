@@ -16,6 +16,17 @@ impl NodeId {
     pub const fn new(val: u64) -> Self {
         Self(val)
     }
+
+    /// Returns a non-existing Node (similar as Option::None)
+    pub fn null() -> Self {
+        DefaultKey::null().into()
+    }
+
+    /// Checks if the node is null (similar as Option::None)
+    #[cfg(feature = "taffy_tree")]
+    pub fn is_null(&self) -> bool {
+        *self == DefaultKey::null().into()
+    }
 }
 
 impl From<u64> for NodeId {
